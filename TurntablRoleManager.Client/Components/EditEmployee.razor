@@ -1,0 +1,65 @@
+﻿@inherits EditEmployeeBase
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block lead" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="titleLabel"><strong>Edit Employee Details</strong></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <EditForm Model="@EmployeeDetailsModel" OnValidSubmit="@HandleValidSubmit">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary Model="@EmployeeDetailsModel" />
+
+                        <div class="form-group">
+                            <label for="firstname">First Name : </label>
+                            <InputText id="firstname" class="form-control" @bind-Value="@EmployeeDetailsModel.EmployeeFirstName" placeholder="Enter firstname"></InputText>
+                            <ValidationMessage For="@(() => EmployeeDetailsModel.EmployeeFirstName)" />
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name : </label>
+                            <InputText id="lastname" class="form-control" @bind-Value="@EmployeeDetailsModel.EmployeeLastName" placeholder="Enter lastname"></InputText>
+                            <ValidationMessage For="@(() => EmployeeDetailsModel.EmployeeLastName)" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email : </label>
+                            <InputText id="email" class="form-control" @bind-Value="@EmployeeDetailsModel.EmployeeEmail" placeholder="Enter email"></InputText>
+                            <ValidationMessage For="@(() => EmployeeDetailsModel.EmployeeEmail)" />
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address : </label>
+                            <InputTextArea id="address" class="form-control" @bind-Value="@EmployeeDetailsModel.EmployeeAddress" placeholder="Enter address"></InputTextArea>
+                            <ValidationMessage For="@(() => EmployeeDetailsModel.EmployeeAddress)" />
+                        </div>
+                        <div class="form-group">
+                            <label for="role">Role(s) : </label>
+                            <select class="form-control" @bind="@SelectedRole">
+                                @foreach (var role in Roles)
+                                {
+                                    <option value="@role.Id">@role.Name</option>
+                                }
+                            </select>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Update</button>
+                            <button type="button" class="btn btn-secondary" @onclick="Close" data-dismiss="modal">Close</button>
+                        </div>
+                    </EditForm>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}

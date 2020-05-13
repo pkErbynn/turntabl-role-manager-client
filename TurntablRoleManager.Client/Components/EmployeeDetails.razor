@@ -1,0 +1,49 @@
+﻿@inherits EmployeeDetailsBase
+
+@if (ShowDialog)
+{
+    <div class="modal fade show d-block lead" id="exampleModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="titleLabel"><strong>Employee Details</strong></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" @onclick="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">First Name: <span>@EmployeeDetailsModel.EmployeeFirstName</span></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname">Last Name: <span>@EmployeeDetailsModel.EmployeeLastName</span></label>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email: <span>@EmployeeDetailsModel.EmployeeEmail</span> </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address: <span>@EmployeeDetailsModel.EmployeeAddress </span> </label>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">
+                            Role:
+                            @foreach (var role in EmployeeDetailsModel.Roles)
+                            {
+                            <span class="badge badge-pill badge-secondary">@role.Name </span>
+                            }
+                        </label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" @onclick="Close" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
