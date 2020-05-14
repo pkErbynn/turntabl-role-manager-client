@@ -21,6 +21,9 @@ namespace TurntablRoleManager.Client.Pages
         [Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
 
+        [Inject]
+        public NavigationManager navigationManager { get; set; }
+
         protected override async Task OnInitializedAsync()
         {
             //Make API Call to Get All Employees when component is invoke
@@ -59,6 +62,7 @@ namespace TurntablRoleManager.Client.Pages
         {
             await EmployeeDataService.DeleteEmployee(id);
             this.DeleteMessage = "Deleted successfully";
+            navigationManager.NavigateTo("employees");
         }
     }
 }
