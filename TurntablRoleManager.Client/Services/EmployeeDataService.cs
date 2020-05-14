@@ -50,5 +50,11 @@ namespace TurntablRoleManager.Client.Services
             new StringContent(JsonSerializer.Serialize(employee), Encoding.UTF8, "application/json");
             await _httpClient.PutAsync("api/employees", employeeJson);
         }
+
+        public async Task DeleteEmployee(int id)
+        {
+            var result = await _httpClient.DeleteAsync($"api/employees/{id}");
+            Console.WriteLine("Result: " + result);
+        }
     }
 }

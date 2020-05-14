@@ -15,7 +15,9 @@ namespace TurntablRoleManager.Client.Pages
         protected EditEmployeeBase EditEmployee { get; set; }
         protected EmployeeDetailsBase EmployeeDetails { get; set; }
         public IEnumerable<EmployeeDetailsModel> Employees { get; set; }
-   
+        public string DeleteMessage = "";
+
+
         [Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
 
@@ -51,6 +53,12 @@ namespace TurntablRoleManager.Client.Pages
         {
             Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
             StateHasChanged();
+        }
+
+        public async void RemoveEmployee(int id)
+        {
+            await EmployeeDataService.DeleteEmployee(id);
+            this.DeleteMessage = "Deleted successfully";
         }
     }
 }

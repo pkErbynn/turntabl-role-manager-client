@@ -3,7 +3,7 @@
 
 <section class="container-fluid">
     <div class="breadcrubTitle">
-        <h2>Employee Information</h2>
+        <h2>Employee List</h2>
     </div>
         @if (Employees == null)
         {
@@ -27,27 +27,32 @@
         <tbody>
             @if (Employees.Count()== 0)
             {
-                <br />
                 <tr>
                     <td class="lead text-center font-italic alert-danger" colspan="3">No record found</td>
                 </tr>
             }
             @foreach (var employee in Employees)
             {
-                <tr>
-                    <td>@employee.EmployeeFirstName</td>
-                    <td>@employee.EmployeeLastName</td>
-                    <td style="text-align:center;">
-                        <button @onclick="@(() => ShowMoreDetails(employee.EmployeeId))" title="View Detail?" class="btn btn-primary table-btn">
-                            <i class="oi oi-list-rich"></i>
-                        </button>
-                    </td>
-                    <td style="text-align:center;">
-                        <button @onclick="@(() =>QuickEditEmployee(employee.EmployeeId))" title="Edit Employee?" class="btn btn-primary table-btn">
-                            <i class="fas fa-edit"> </i>
-                        </button>
-                    </td>
-                </tr>
+        <tr>
+            <td>@employee.EmployeeFirstName</td>
+            <td>@employee.EmployeeLastName</td>
+            <td style="text-align:center;">
+                <button @onclick="@(() => ShowMoreDetails(employee.EmployeeId))" title="View Detail?" class="btn btn-primary table-btn">
+                    <i class="fas fa-info"></i>
+                </button>
+            </td>
+            <td style="text-align:center;">
+                <button @onclick="@(() =>QuickEditEmployee(employee.EmployeeId))" title="Edit Employee?" class="btn btn-primary table-btn">
+                    <i class="fas fa-edit"> </i>
+                    <i class="far fa-edit"></i>
+                </button>
+            </td>
+            <td style="text-align:center;">
+                <button @onclick="@(() =>RemoveEmployee(employee.EmployeeId))" title="Edit Employee?" class="btn btn-primary table-btn">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </td>
+        </tr>
             }
         </tbody>
     </table>

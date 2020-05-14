@@ -12,5 +12,6 @@ namespace TurntablRoleManager.Client.Services
         Task<EmployeeDetailsModel> GetEmployeeDetails(int employeeId);
         Task<EmployeeResponse> AddEmployee(EmployeeModel employee);
         Task UpdateEmployee(UpdateEmployeeModel employee);
+        Task DeleteEmployee(int id);
     }
 }
